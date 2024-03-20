@@ -4,7 +4,7 @@ import { appConfig } from './app.config';
 
 const serverConfig: ApplicationConfig = {
   providers: [
-    provideServerRendering()
+    provideServerRendering() // This will Load CSS, HTML and Server-Side Generated Compiled JS files in Browser 
   ]
 };
 
