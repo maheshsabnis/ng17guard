@@ -18,7 +18,9 @@
     <!--Parent is subscribing to the (onChange) event and reading value
      emitted by the child componet
     -->
-    <app-select [DataSource]="categories" (onChange)="getCat($event)"></app-select>
+    <app-select [DataSource]="categories" (onChange)="getCat($event)"
+    [PropertyName]="product.Category"
+    ></app-select>
   </div>
   <div class="form-group">
     <label>Manufacturer</label>
@@ -30,7 +32,9 @@
      <!--Parent is subscribing to the (onChange) event and reading value
      emitted by the child componet
     -->
-    <app-select [DataSource]="manufacturers" (onChange)="getMan($event)"></app-select>
+    <app-select [DataSource]="manufacturers" (onChange)="getMan($event)"
+    [PropertyName]="product.Manufacturer"
+    ></app-select>
   </div>
   <div class="form-group">
     <label>Price</label>

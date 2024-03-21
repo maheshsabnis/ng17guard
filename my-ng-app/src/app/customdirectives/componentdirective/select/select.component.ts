@@ -9,6 +9,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class SelectComponent implements OnInit {
 
   private _DataSource:Array<any>;
+  private _PropertyName: any;
 
   // An Event Binding
   // <app-select (onChange)=""></app-select>
@@ -18,6 +19,7 @@ export class SelectComponent implements OnInit {
 
   constructor() {
     this._DataSource = new Array<any>();
+
     this.onChange = new EventEmitter<any>();
   }
 
@@ -37,9 +39,22 @@ export class SelectComponent implements OnInit {
     return this._DataSource;
   }
 
+  @Input()
+  set PropertyName(val:any){
+    this._PropertyName = val;
+  }
+
+  get PropertyName():any{
+    return this._PropertyName;
+  }
+
+
+
 
   changeValue($event:any):void {
     alert(`The Selected VAlue by Chaild: ${$event.target.value}`)
     this.onChange.emit($event.target.value);
   }
+
+
 }
