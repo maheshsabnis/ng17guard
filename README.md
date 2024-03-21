@@ -230,3 +230,25 @@ https://github.com/maheshsabnis/rhealTS
     - Lazy Loading
     - Guarded Routes
 - Deployment
+
+# Component Development Guidelines
+- Try to eliminate the unnecessary hard-coding for static data properties if there is posisbility of change or modification in data proeprties
+    - This is mandatory if the data and its schema (property names) are received from external service HTTP Calls
+- If the same User-Interface (UI) is frequently used across same or various components in the application, then consider creating a custom re-usable component   
+    - Plan for the UI Requirements for the Custom Reusable component
+        - You decide the standatd HTML required to create/generate UI
+    - Plan for the behavior of this component when it is used as a child in parent component
+        - Plan for Data
+            - Data passed to child component from its parent
+            - The @Input() decorator to pass data from Parent to child
+                - The Reusable component will have a public get/set property where the 'set()' is applied with '@Input()' decorator so that parent can pass data to it
+            - The proprety which is applied with '@Input()' decorator is used for 'Property-Binding'
+        - Plan for Data Emission from Child to Parent
+            - Define an event in Child Component that will be responsible for emittng data to parent 
+            - The child component will have the 'EventEmitter<T>' object decorator with '@Output()' decorator
+                - EventEmitter<T>, used to define a custom event in Angular
+                    - T is the 'payload' aka the type of data emitted to parent component
+                    - The 'emit()' method will emit the data to parent
+            - The '@Output()' decoarated custom event defined in child component will be used for 'EVENT-BINDING' in parent component so that the data emitted from child will be listened by the parent
+                - To subscribe and read data emitted from the child, the parent uses the '$event' parameter
+                    - A standard JavaScript object that represents 'Event Payload'

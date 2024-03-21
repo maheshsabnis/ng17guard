@@ -1,0 +1,5 @@
+<select class="form-control" (change)="changeValue($event)">
+   @for (record of DataSource; track $index) {
+    <option value="{{record}}">{{record}}</option>
+   }
+</select>
