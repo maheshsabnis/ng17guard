@@ -1,0 +1,25 @@
+<h1>The Dynamically generated Form</h1>
+
+<div class="container">
+  <form [formGroup]="myForm" (ngSubmit)="save()">
+      <!--Lets Generate Input Elements for Form based on formKeys-->
+      <div class="form-group"
+         *ngFor="let key of formKeys"
+      >
+        <label>{{key}}</label>
+        <input type="text" [formControlName]="key" class="form-control">
+
+        <div class="alert alert-danger"
+          *ngIf="myForm.controls[key].dirty && myForm.controls[key].invalid"
+        >
+          <p *ngIf="myForm.controls[key].errors?.['required']">
+             <strong>
+                 The Value for {{key}} is required
+             </strong>
+          </p>
+      </div>
+
+    </div>
+    <input type="submit" value="Save" class="btn btn-success">
+  </form>
+</div>

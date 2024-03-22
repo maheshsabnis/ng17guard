@@ -21,3 +21,11 @@
         - When the header row checkbox is 'checked' then checkboxes for each row must be 'checked', same for unchecked
         - In each column header show two buttons named 'sort' and 'reverse' (YOU may use bootstrap CSS for showning Sort/Reverse icons)
             - When sort button is clicked, show the DataGrid data in sorted order by that column, do the same for reverse button
+
+# Date:22-March-2024
+
+1. Validate the ProductComponent based on the Following validations
+    - The ProductName is mandatory and must start with UpperCase Characters
+    - The ProductId must start with word 'Prod-'
+    - The ProductId must be Unique
+2. Create a Dynamic form for Product where the Category and Manufactureres MUST be HTML select elements  

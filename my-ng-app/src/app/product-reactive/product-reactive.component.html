@@ -1,0 +1,86 @@
+<h1>The Product Reactive Form </h1>
+<div class="container">
+  <form name="frmProduct" [formGroup]="frmProduct" (ngSubmit)="save()">
+  <div class="form-group">
+    <label>Product Id</label>
+    <input type="text" class="form-control" name="ProductId"
+     formControlName="ProductId"
+    >
+    <!--Lets Show Validation Errors-->
+    <div class="alert alert-danger"
+           *ngIf="frmProduct.controls['ProductId'].dirty && !frmProduct.controls['ProductId'].valid">
+      <div *ngIf="frmProduct.controls['ProductId'].errors['required']">ProdutId is Required</div>
+      <div *ngIf="frmProduct.controls['ProductId'].errors['minlength']">ProdutId is must be 4 characters in length minimum</div>
+      <div *ngIf="frmProduct.controls['ProductId'].errors['maxlength']">ProdutId is cab be 20 characters in length maximum</div>
+      <div *ngIf="frmProduct.controls['ProductId'].errors['pattern']">ProdutId is must be Alphanumeric</div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Product Name</label>
+    <input type="text" class="form-control" name="ProductName"
+    formControlName="ProductName"
+    >
+  </div>
+  <div class="form-group">
+    <label>Category</label>
+    <select class="form-control" name="Category"
+    formControlName="Category"
+    >
+        @for (cat of categories; track $index) {
+          <option value="{{cat}}">{{cat}}</option>
+        }
+    </select>
+
+
+  </div>
+  <div class="form-group">
+    <label>Manufacturer</label>
+  <select class="form-control" name="Manufacturer"
+  formControlName="Manufacturer"
+  >
+        @for (man of manufacturers; track $index) {
+          <option value="{{man}}">{{man}}</option>
+        }
+    </select>
+
+  </div>
+  <div class="form-group">
+    <label>Price</label>
+    <input type="number" class="form-control" name="Price"
+    formControlName="Price"
+    >
+
+     <!--Lets Show Validation Errors-->
+     <div class="alert alert-danger"
+     *ngIf="frmProduct.controls['Price'].dirty && !frmProduct.controls['Price'].valid">
+          <div *ngIf="frmProduct.controls['Price'].invalid">Price Must be +ve integer</div>
+</div>
+  </div>
+  <div class="btn-group-lg">
+    <button type="reset" class="btn btn-warning">Clear</button>
+    <button type="submit" [disabled]="!frmProduct.valid" class="btn btn-success">Save</button>
+  </div>
+</form>
+  <br/>
+
+<!--Dynamically generating the Table-->
+<table class="table table-bordered table-striped">
+  <thead>
+     <tr>
+        @for (col of columns; track $index) {
+          <th>{{col}}</th>
+        }
+     </tr>
+  </thead>
+  <tbody>
+    @for (prd of products; track $index) {
+      <tr (click)="rowclick(prd)">
+        @for (col of columns; track $index) {
+          <td>{{prd[col]}}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
+</div>
+

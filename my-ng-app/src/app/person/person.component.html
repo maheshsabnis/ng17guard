@@ -1,0 +1,45 @@
+<h1>Angular 17 Reactive Forms Validation Syntax</h1>
+
+
+<div class="container">
+  <form name="frmPerson" [formGroup]="frmPerson" (ngSubmit)="save()">
+     <div class="form-group">
+        <label for="FirstName">First Name</label>
+        <input type="text" name="FirstName" class="form-control"
+          formControlName="FirstName"
+          [ngClass]="{'is-valid': sumbitted && f['FirstName'].errors}"
+      >
+      <!--Validation COnfiguration in Angular 17 New if statement template-->
+      @if(sumbitted && frmPerson.controls['FirstName'].errors) {
+       <div class="alert alert-danger">
+          @if(frmPerson.controls['FirstName'].errors['required']){
+            <p>First Name is Required</p>
+          }
+       </div>
+      }
+     </div>
+     <div class="form-group">
+      <label for="MiddleName">Middle Name</label>
+      <input type="text" name="MiddleName" class="form-control"
+      formControlName="MiddleName"
+
+      [ngClass]="{'is-valid': sumbitted && f['MiddleName'].errors}"
+      >
+      <!--Validation COnfiguration in Angular 17 New if statement template-->
+      @if(sumbitted && f['FirstName'].errors) {
+        <div class="alert alert-danger">
+           @if(f['FirstName'].errors['required']){
+             <p>Middle Name is Required</p>
+           }
+        </div>
+       }
+   </div>
+   <div class="form-group">
+    <label for="LastName">Last Name</label>
+    <input type="text" name="LastName" class="form-control"
+    formControlName="LastName"
+    >
+ </div>
+  <input type="submit" value="Save">
+  </form>
+</div>

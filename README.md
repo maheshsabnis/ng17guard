@@ -252,3 +252,68 @@ https://github.com/maheshsabnis/rhealTS
             - The '@Output()' decoarated custom event defined in child component will be used for 'EVENT-BINDING' in parent component so that the data emitted from child will be listened by the parent
                 - To subscribe and read data emitted from the child, the parent uses the '$event' parameter
                     - A standard JavaScript object that represents 'Event Payload'
+
+# Angular Forms
+- Using HTML 5 Validators
+    - Use the HTML ATtributes for Validating User-Inuts
+        -  required, pattern, min, max, etc.
+- Template Form
+    - A Standard form of which behavior of Data Changes aka Binding is handled using '[(ngModel)]'
+        - Raises Change Event for each change in UI Element
+        - FormsModule from @angular/forms
+- Reactive Forms
+    - A smart behavior set of HTMl Forms
+    - Uses 'ReactiveFormsModule' from @angular/forms to provide new Object Model to manage the Execution of HTML Form 
+        - New Object Model, de-couples the Model class from the UI
+        - FormBuilder
+            - An object that bulds the React Form from HTML '<form>' tag
+                - Maps the <form> tag to 'ngForm' internally
+            - The 'group' property of the FormBuilder, provides an instance of 'FormGroup' class
+        - FormGroup
+            - A class that represents 'collection' of Form elements (e.g. inout, select, etc.) present under '<form>' tag
+                - The 'collection' is of the type 'FormControlCollection'
+                    - The 'FormControlCollection', is a bridge between 'Form element' and 'Model class property'
+                    - This bridge maps the public property of model class with HTML elements using 'formControlName' attribute directive
+                    - Each 'formControlName' is an instance of 'FormControl' class 
+            - The 'value' property
+                - The value collection entered in each 'FormControl'
+            - The 'setValue()' method   
+                - USed to set values for every FormControl under the FormGroup
+        - FormBuilder, FormGroup, FormControl are derived from 'AbstractControl' base class
+            - The 'FormControl', has a constrctor with 2 parameters
+                - Parameter 1: The public property from the Model class
+                    - Also known as 'Form-State' or 'State', the value that is either presented or received from End-User
+                - Parameter 2: The Validators.compose([RULES-FOR-MODEL-PROPERTY-VALIDATION]) 
+                    - The 'Validators' class with following static methods
+                        - required(AbstractControl),requiredTrue(AbstractControl),nullValidator(AbstractControl)
+                        - minLength(int), maxLength(int)
+                        - pattern(string|RegEx)
+                        - compose([ARRAY-OF-VALIDATION-METHODS]) , composeAsync([])
+                    - IMP: Validation method that accepts 'AbstractControl' as input parameter need not to be passed then 'control' as input parameter while invoking instead this will be implicitly reading the HTML Control's reference using the 'formControlName' attribute 
+            - frmProduct.controls['ProductId'].dirty && !frmProduct.controls['ProductId'].valid
+                - frmProduct.controls['ProductId']
+                    - The FormControl instance with key as 'ProductId'
+                - frmProduct.controls['ProductId'].dirty
+                    - The FormControl is 'changed' i.e. dirty so that the Validation Rules are activated
+                - !frmProduct.controls['ProductId'].valid
+                    - The FormContol with Key as 'ProductId' is 'not valid'   
+        - Custom Validator
+            - Create a class with static method
+            - This method will either accept an 'AbstractControl' or any other type as input parameter
+                - Note: Recommended to accept AbstractCOntrol, so that we can easily read value from it
+            - This method return 'any' because of following reason
+                - if value is valid then 'null' is return
+                - else for invalid value a JSON object will be retrned
+                    - e.g. {invalid:true} OR {valid:false} or {data:false}
+
+- Some Considerations while Working with Forms (Even for all components)
+    - Make sure that the component implements 'OnInit' interface and implements its 'ngOnInit()' method
+    - This method contains the code that is resource intensice 
+        - e.g. 
+            - HTTP calls
+            - SUbscription with the Shared State Across Components
+- Dynamic Forms (Angular 15+)
+    - FormArray
+        - An Explicit Array for Formontrols
+    - FormRecord
+        - Represent the Dynamic Form Generated and also represents the FormData with Validations 
