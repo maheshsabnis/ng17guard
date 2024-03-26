@@ -1,0 +1,26 @@
+<h1>Product Received Component</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Prod Id</th>
+      <th>Prod Name</th>
+      <th>Cat Id</th>
+   </tr>
+  </thead>
+   <tbody>
+      @for (prd of FilteredProducts; track $index) {
+          <tr>
+            <td>
+              {{prd.ProdId}}
+            </td>
+            <td>
+              {{prd.ProdName}}
+            </td>
+            <td>
+              {{prd.CatId}}
+            </td>
+          </tr>
+      }
+   </tbody>
+</table>

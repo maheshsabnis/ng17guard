@@ -1,0 +1,22 @@
+<h1>Category Sender Component</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Cat Id</th>
+      <th>Cat Name</th>
+   </tr>
+  </thead>
+   <tbody>
+      @for (cat of categories; track $index) {
+          <tr (click)="onSelectCategory(cat.CatId)">
+            <td>
+              {{cat.CatId}}
+            </td>
+            <td>
+              {{cat.CatName}}
+            </td>
+          </tr>
+      }
+   </tbody>
+</table>

@@ -317,3 +317,51 @@ https://github.com/maheshsabnis/rhealTS
         - An Explicit Array for Formontrols
     - FormRecord
         - Represent the Dynamic Form Generated and also represents the FormData with Validations 
+
+- Direcctives in Angular
+    - They are objects those are responsible for
+        - Behavior of HTML Element
+            - ngModel
+            - IMP:
+                - The HTML Element is 'self-responsive'
+                    - Use in-built event binding
+                        - Sufficient in most of the case
+                            - change, keyup, keypress, blur, etc.
+                            - Make sure that the 'event-payload' i.e. '$event' is used for passing UI elements data to component in-case where 'ngModel' is not necessary
+                            - $event.target.value (in HTML-Template) OR
+                                 event.target.value
+                        
+                                - $event: Payload, the data for HTML ELement
+                                - $event.target, the HTML element on which an event occurred
+                                - $event.target.value: The actula value entered in HTML element  
+                            - IMP: If the data to be filtered by making HTTP Calls then avoid to execute the HTTP call in the 'change', 'keyup', 'blue', etc. event, this will increase HTTP Network Traffic
+                    - Create a Custom Directive for Attribute
+                        - Custom behavior to be applied on one-or-more elements based on freqnently changed events e.g. mouse events then consider creating a 'custom arrtibute directive'
+                            - THis directive will listen to event on UI to set the behavoir of HTML element and manage its rendering
+                        - Rules for Creating Custom Attribute Directive
+                            - Class will be decorated with '@Directive' decorator
+                            - Since the attribute directive will create a 'custom HTML Attribute property' that will be used for 'PROPERTY-BINDING' e.g. [ATTRIBUTE-NAME], the 'selector' property of 'Directve' class MUST be defind using '[ATTRIBUTE-NAME]' syntax  
+                            - The directive MUST be constructor injected with 'Renderer2' and 'ElementRef' classes 
+                                - ElementRef: This will be referred to acces the UI element on Broswer i.e. COmponent's HTML Template on which the directive will be applied 
+                                - Renderer2: Used to define rendering of HTML element after the custom directive is activated
+                            - Events defined in Custom Directive will be registered on DOM using 'HostListener' class      
+                            - Since the Attribute Directive accepts an input from Component, this must define a @Input decorated property in Custom Directive that will be mapped with the 'selector'
+                    - Create a Custom Pipe for Behavior
+        - Behavior of UI as a complete Autonumous Object
+            - Component Directive
+        - Behavior of Objects to Generate HTML Element
+            - Structural Directive
+
+# Angular Services
+- A Reusable object that is used for
+    - Containing the logic that can be used across all other objects of Angular application
+    - Sharing Data Across Components (Very Popular)   
+    - Managing Heavy-Load Operations e.g. HTTP Calls, Socket Calls
+- Services are Registered in DI Container of the Angular Application
+    - The service class is Decorated usign @Injectable() decorator, this has the 'providedIn' property
+        - providedIn: 'root' | 'platform' | 'any'
+            - 'root': The Application-Level injector. All Objects (Components, Services, Directives) can be injected with the root provider service. Mostly used across all Angular Apps
+            - 'platform': Shared by all Angular Apps loaded on the Page
+            - 'any': The Object is available across 'Shared' modules as well as 'Lazy-Loaded' modules
+            https://angular.io/api/core/Injectable#providedIn
+             

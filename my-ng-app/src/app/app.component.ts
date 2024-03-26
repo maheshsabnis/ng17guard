@@ -2,7 +2,7 @@ import { NgForOf } from '@angular/common';
 import { Component } from '@angular/core';
 // Needed FormsModule for two-way binding
 import { FormsModule } from '@angular/forms';
-// RouterOutlet: Class thet Loads and Renders component 
+// RouterOutlet: Class thet Loads and Renders component
 // when ROuting is used
 import { RouterOutlet } from '@angular/router';
 

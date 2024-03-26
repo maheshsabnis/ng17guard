@@ -4,6 +4,7 @@ export class ProductLogic {
   private products: Array<Product>;
 
   constructor(){
+    console.log(`Logic class constructor calledd`);
     this.products = new Array<Product>();
 
     this.products.push(new Product('Prod-0001', 'Laptop', 'HP', 'Electronics', 100000));

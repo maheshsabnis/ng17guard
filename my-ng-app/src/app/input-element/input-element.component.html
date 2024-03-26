@@ -1,0 +1,42 @@
+<h1>Input Element Change Effect</h1>
+<div class="container">
+<strong>Enter Data</strong>
+<input type="text" class="form-control"   (keyup)="filterData($event)"
+/>
+
+<br/>
+  Selected NAme : {{selName}}
+<br/>
+<table class="table table-bordered">
+   <tbody>
+     <tr>
+      <td> <input type="radio" name="r"  value="red" (click)="color='red'"> Red</td>
+      <td> <input type="radio" name="r" value="yellow" (click)="color='yellow'"> Yellow</td>
+      <td> <input type="radio" name="r" value="blue" (click)="color='blue'"> Blue</td>
+     </tr>
+   </tbody>
+</table>
+<br/>
+@if(_filteredName.length > 0){
+<ul>
+@for (name of _filteredName; track $index) {
+   <li [setColor]="color">{{name}}</li>
+}
+</ul>
+} @else {
+   <div class="alert alert-danger">
+      <strong>No Data to Show</strong>
+   </div>
+}
+
+<br/>
+<button (click)="checkLength()">Get Length</button>
+<div class="alert alert-warning">
+   <strong>{{length}}</strong>
+</div>
+<br/>
+<button (click)="getCase()">Change Case</button>
+<div class="alert alert-warning">
+   <strong>{{resultStr}}</strong>
+</div>
+</div>

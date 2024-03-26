@@ -6,7 +6,9 @@ import { ProductComponent } from './app/product/product.component';
 import { ProductReactiveComponent } from './app/product-reactive/product-reactive.component';
 import { PersonComponent } from './app/person/person.component';
 import { DynamicPersonComponent } from './app/dynamic-person/dynamic-person.component';
+import { InputElementComponent } from './app/input-element/input-element.component';
+import { ContainerComponent } from './app/container/container.component';
 
-const bootstrap = () => bootstrapApplication(DynamicPersonComponent, config);
+const bootstrap = () => bootstrapApplication(ContainerComponent, config);
 
 export default bootstrap;
