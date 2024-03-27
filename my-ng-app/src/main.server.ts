@@ -8,7 +8,9 @@ import { PersonComponent } from './app/person/person.component';
 import { DynamicPersonComponent } from './app/dynamic-person/dynamic-person.component';
 import { InputElementComponent } from './app/input-element/input-element.component';
 import { ContainerComponent } from './app/container/container.component';
+import { CategoryHttpComponent } from './app/category-http/category-http.component';
+import { AuthenticateComponent } from './app/authenticate/authenticate.component';
 
-const bootstrap = () => bootstrapApplication(ContainerComponent, config);
+const bootstrap = () => bootstrapApplication(AuthenticateComponent, config);
 
 export default bootstrap;

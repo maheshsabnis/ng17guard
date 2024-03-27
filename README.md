@@ -365,3 +365,34 @@ https://github.com/maheshsabnis/rhealTS
             - 'any': The Object is available across 'Shared' modules as well as 'Lazy-Loaded' modules
             https://angular.io/api/core/Injectable#providedIn
              
+- Angular Services for Containing and Managing Asynchronous HTTP Calls
+    - The 'RxJs', the Reactive Extension for JavaScript
+        - The 'Observable',
+            - The object that is responsible to subscribe to call-back to monitor the data availability
+            - When the data is available it is dispatched to the subscriber and hence make the subscriber free from waiting for the data   
+            - Observable(next, error, complete)
+                - next: callback for Success, this accepts 'response' object
+                - error: error callback, accepts the 'Error' object
+                - complete: callback to release the client form observable           
+    - The Angular Object model for HTTP
+        - HttpClient class to Manage the Async HTTP Communicaiton
+            - Injected in the Angular Service
+            - This is Resolved by the HttpClientModule from @angular/comman/http package
+            - Methods
+                - get(), post(), put(), and delete() method
+                    - Each method returns 'Observable<T>'
+                        - T is the response object
+                    - FIrst parameter to each method is URL
+                    - post() and put()
+                        - Second Parameter as 'body' data
+                            - The data that is to be posted or updated
+                    - get() and delete() methods has second paraneter as HttpHeader
+                        - Header for
+                            - AUTHORIZATION
+                            - CUSTOME VALUE
+                    - post() and put() methods has third parameter as HttpHeader
+                        - Content-Type aka MIME Type
+                        - AUTHORIZATION
+                        - CUSTOME VALUE
+
+- SQL-AspNetCore-Angular-NetCore (SAAN)

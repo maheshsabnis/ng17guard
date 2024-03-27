@@ -31,7 +31,7 @@
 2. Create a Dynamic form for Product where the Category and Manufactureres MUST be HTML select elements  
 
 
-3 Date: 260March-2024
+3 Date: 26-March-2024
 
 1. Create a SearchService in Angular. This service will have a string property named 'SearchedText', an EventEmitted name 'searchRequestReceived', and a method named 'OnSearcRequestedReceived(text:string)'. This method will accept search Text from the component and based on the searche Text, it will filter data from other component
 
@@ -40,3 +40,11 @@
 3. CReate PersonListComponent to show list of products, Create EmployeeListComponent that will sheo List of Employees. 
 
 4. When a Search text is entered in SearchComponent's Input element, whichever the List component shown below it either ProductsListComponent or EmployeeListComponent, the data must be filtered from thse component based on the search string
+
+
+# Date: 27-March-2024
+1. Create Angular Component (one Single Component) for following
+    - Create New Role
+    - Create New User and Assign Role to it
+    - Authenticating the User
+    - Performing CRUD Operations on CategoryAPI

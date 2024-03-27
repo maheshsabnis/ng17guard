@@ -1,1 +1,23 @@
-<p>category works!</p>
+<h1>List of Categories</h1>
+
+
+<table class="table table-bordered table-striped">
+   <thead>
+     <tr>
+       <th>Category Unique Id</th>
+       <th>Category Id</th>
+       <th>Category Name</th>
+       <th>Base Price</th>
+     </tr>
+   </thead>
+   <tbody>
+     @for (cat of categories; track $index) {
+       <tr>
+          <td>{{cat.CategoryUniqueId}}</td>
+          <td>{{cat.CategoryId}}</td>
+          <td>{{cat.CategoryName}}</td>
+          <td>{{cat.BasePrice}}</td>
+       </tr>
+     }
+   </tbody>
+</table>

@@ -8,9 +8,11 @@ import { PersonComponent } from './app/person/person.component';
 import { DynamicPersonComponent } from './app/dynamic-person/dynamic-person.component';
 import { InputElementComponent } from './app/input-element/input-element.component';
 import { ContainerComponent } from './app/container/container.component';
+import { CategoryHttpComponent } from './app/category-http/category-http.component';
+import { AuthenticateComponent } from './app/authenticate/authenticate.component';
 // Client-Side Rendering
 // Parameters:
 // P1: The Class Name of the Standalone Component
 // P2: The Configuration for Running the Component in Browser e.g. Router, hyderation, Http Client, etc.
-bootstrapApplication(ContainerComponent, appConfig)
+bootstrapApplication(AuthenticateComponent, appConfig)
   .catch((err) => console.error(err));

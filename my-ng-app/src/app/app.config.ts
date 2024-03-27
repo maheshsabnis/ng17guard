@@ -6,12 +6,14 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 // DOM Hydration
 import { provideClientHydration } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
 
-// 
+//
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), // Router for Single Page App, Load the Router for Browser Based Routing
-    provideClientHydration() // Effective Management of DOM for Hydration of HTML in Browser for responsiveness 
+    provideHttpClient(), // For Registering and Resolving dependencies for HttpClient for Http calls
+    provideClientHydration() // Effective Management of DOM for Hydration of HTML in Browser for responsiveness
 
   ]
 };

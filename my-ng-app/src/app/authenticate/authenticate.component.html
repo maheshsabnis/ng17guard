@@ -1,0 +1,49 @@
+<h1>Angular App making Authenticated Call to REST API</h1>
+
+
+<table class="table table-bordered table-striped">
+    <tbody>
+      <tr>
+
+          <td>
+            <button class="btn btn-success" (click)="loginUser()">Authenticate User</button>
+         </td>
+      </tr>
+      <tr>
+         <td colspan="2">
+           <button class="btn btn-danger" (click)="getCategories()">Get Categories</button>
+         </td>
+      </tr>
+    </tbody>
+    <tfoot>
+       <tr>
+         <td>
+           {{message}}
+         </td>
+       </tr>
+       <tr>
+         <td>
+          <table class="table table-bordered table-striped">
+            <thead>
+               <tr>
+                 <th>Cateory Unique Id</th>
+                 <th>Cateory Id</th>
+                 <th>Cateory Name</th>
+                 <th>Base Price</th>
+               </tr>
+            </thead>
+            <tbody>
+                @for (cat of categories; track $index) {
+                   <tr>
+                     <td>{{cat.CategoryUniqueId}}</td>
+                     <td>{{cat.CategoryId}}</td>
+                     <td>{{cat.CategoryName}}</td>
+                     <td>{{cat.BasePrice}}</td>
+                   </tr>
+                }
+            </tbody>
+          </table>
+         </td>
+       </tr>
+    </tfoot>
+</table>
