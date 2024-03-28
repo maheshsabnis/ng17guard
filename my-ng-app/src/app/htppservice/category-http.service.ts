@@ -25,7 +25,14 @@ export class CategoryHttpService {
      });
      return response;
   }
-  getDataById(id:null):Observable<APIResponse<CategoryModel>> {
+
+  getCatData():Observable<APIResponse<CategoryModel>> {
+    let response:Observable<APIResponse<CategoryModel>>;
+    // pass the token in the HttpHeader
+    response = this.http.get<APIResponse<CategoryModel>>(`${this.url}api/Category`);
+    return response;
+ }
+  getDataById(id:number):Observable<APIResponse<CategoryModel>> {
     let response:Observable<APIResponse<CategoryModel>>;
     response = this.http.get<APIResponse<CategoryModel>>(`${this.url}api/Category/${id}`);
     return response;
@@ -48,7 +55,7 @@ putData(id:number,cat:CategoryModel):Observable<APIResponse<CategoryModel>> {
   });
   return response;
 }
-delete(id:null):Observable<APIResponse<CategoryModel>> {
+delete(id:number):Observable<APIResponse<CategoryModel>> {
   let response:Observable<APIResponse<CategoryModel>>;
   response = this.http.delete<APIResponse<CategoryModel>>(`${this.url}api/Category/${id}`);
   return response;

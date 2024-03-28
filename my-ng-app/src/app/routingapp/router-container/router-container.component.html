@@ -1,0 +1,23 @@
+<h1>Angular Routing Container</h1>
+<table class="table table-bordered table-striped table-primary">
+  <tbody>
+     <tr>
+       <td>
+        <!--Default ROute-->
+          <a [routerLink]="['']">Category List</a>
+       </td>
+       <td>
+        <a [routerLink]="['create']">Create Category</a>
+     </td>
+     <td>
+      <a [routerLink]="['lazy']">Lazy Module</a>
+   </td>
+
+     </tr>
+  </tbody>
+</table>
+<br/>
+<router-outlet></router-outlet>
+
+
+

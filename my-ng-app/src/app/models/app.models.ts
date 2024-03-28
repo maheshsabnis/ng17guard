@@ -7,6 +7,19 @@ export class CategoryModel {
   ){}
 }
 
+export class ProductModel {
+  constructor(
+     public ProductUniqueId:number,
+     public ProductId:string,
+     public ProductName:string,
+     public Manufacturer:string,
+     public Price:number,
+     public CategoryUniqueId:number
+  ){
+
+  }
+}
+
 ///class for Receiving Http Response after the API Call
 export class APIResponse<T> {
   constructor(

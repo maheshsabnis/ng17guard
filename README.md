@@ -396,3 +396,29 @@ https://github.com/maheshsabnis/rhealTS
                         - CUSTOME VALUE
 
 - SQL-AspNetCore-Angular-NetCore (SAAN)
+
+- Angular Single Page Application (SPA)
+    - @angular/router
+        - RouterModule
+            - Container Object Model for handling Routing in Browser
+            - Routes: A route table that will be created in browser
+            - Route: Each entry in Route Table is Route object
+                - path: The URL for querying to table for navigatoion
+                - component: The name of the component to navigate to
+                - children: Sub-Routing, a child Route Table. One route can have child routes
+                - loadChildren: For Lazy Loading
+                    - Used to load the component lazily
+                    - This component (and hence its module will not be already loaded in browser)
+                - canActivate: Used for Guarded Routes, used based on Authentication information received from the server
+                - data: The Authentication data based on which the  routing will be executed
+            - Router: Class that is used to perform explicit navigation across components based on events e.g. Route in buton click
+            - ActivatedRoute: Use to read the parameter current preent in active URL of browser
+            - [routerLink]: The Attribute Directive applied on '<a>' tag to query to the Route table for navigation
+                - e.g.
+````html
+                    - <a [routerLink]=['']>
+````
+            - RouterOutlet: A Component Directive that acts as a placeholder to load the component that is to be loaded while routing
+````html
+            <router-outlet></router-outlet>
+````

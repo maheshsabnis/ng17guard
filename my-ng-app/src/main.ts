@@ -10,9 +10,12 @@ import { InputElementComponent } from './app/input-element/input-element.compone
 import { ContainerComponent } from './app/container/container.component';
 import { CategoryHttpComponent } from './app/category-http/category-http.component';
 import { AuthenticateComponent } from './app/authenticate/authenticate.component';
+import { CForkJoinComponent } from './app/cfork-join/cfork-join.component';
+import { BFFComponent } from './app/bff/bff.component';
+import { RouterContainerComponent } from './app/routingapp/router-container/router-container.component';
 // Client-Side Rendering
 // Parameters:
 // P1: The Class Name of the Standalone Component
 // P2: The Configuration for Running the Component in Browser e.g. Router, hyderation, Http Client, etc.
-bootstrapApplication(AuthenticateComponent, appConfig)
+bootstrapApplication(RouterContainerComponent, appConfig)
   .catch((err) => console.error(err));

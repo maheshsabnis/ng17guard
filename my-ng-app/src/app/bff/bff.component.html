@@ -1,0 +1,30 @@
+<h1>Angular BFF Implementation</h1>
+
+<table class="table table-bordered table-striped table-warning">
+   <thead>
+      <tr>
+         <th>Category Id</th>
+         <th>Category Name</th>
+         <th>Product Id</th>
+         <th>Product Name</th>
+         <th>Manufacturer</th>
+         <th>Price</th>
+         <th>Tax</th>
+         <th>Total Price</th>
+      </tr>
+   </thead>
+   <tbody>
+     @for (record of bffData; track $index) {
+       <tr>
+         <td> {{record.CategoryId}}</td>
+         <td> {{record.CategoryName}}</td>
+         <td> {{record.ProductId}}</td>
+         <td> {{record.ProductName}}</td>
+         <td> {{record.Manufacturer}}</td>
+         <td> {{record.Price}}</td>
+         <td> {{record.Tax}}</td>
+         <td> {{record.TotalPrice}}</td>
+       </tr>
+     }
+   </tbody>
+</table>

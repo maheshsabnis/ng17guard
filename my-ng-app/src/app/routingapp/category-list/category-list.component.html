@@ -1,0 +1,33 @@
+<h3>List of Categories</h3>
+<div class="container">
+<table class="table table-bordered table-striped">
+  <thead>
+     <tr>
+       <th>Cateory Unique Id</th>
+       <th>Cateory Id</th>
+       <th>Cateory Name</th>
+       <th>Base Price</th>
+     </tr>
+  </thead>
+  <tbody>
+      @for (cat of categories; track $index) {
+         <tr>
+           <td>{{cat.CategoryUniqueId}}</td>
+           <td>{{cat.CategoryId}}</td>
+           <td>{{cat.CategoryName}}</td>
+           <td>{{cat.BasePrice}}</td>
+           <td>
+              <button class="btn btn-primary"
+               (click)="navigateToEdit(cat.CategoryUniqueId)"
+              >Edit</button>
+           </td>
+           <td>
+            <button class="btn btn-danger" (click)="deleteData(cat.CategoryUniqueId)">Delete</button>
+         </td>
+         </tr>
+      }
+  </tbody>
+</table>
+</div>
+<a [routerLink]="['person']">Person Component</a>
+<router-outlet></router-outlet>
