@@ -48,3 +48,5 @@
     - Create New User and Assign Role to it
     - Authenticating the User
     - Performing CRUD Operations on CategoryAPI
+# Date: 28-March-2024
+1. Complete SPA to perform CRUD operation with the product. 
