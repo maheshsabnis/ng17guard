@@ -14,6 +14,6 @@ import { CForkJoinComponent } from './app/cfork-join/cfork-join.component';
 import { BFFComponent } from './app/bff/bff.component';
 import { RouterContainerComponent } from './app/routingapp/router-container/router-container.component';
 
-const bootstrap = () => bootstrapApplication(RouterContainerComponent, config);
+const bootstrap = () => bootstrapApplication(AuthenticateComponent, config);
 
 export default bootstrap;

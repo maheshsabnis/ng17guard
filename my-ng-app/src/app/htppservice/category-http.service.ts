@@ -15,14 +15,16 @@ export class CategoryHttpService {
     this.url = 'https://localhost:7134/';
    }
 
-  getData(token:any):Observable<APIResponse<CategoryModel>> {
+  getData():Observable<APIResponse<CategoryModel>> {
      let response:Observable<APIResponse<CategoryModel>>;
      // pass the token in the HttpHeader
-     response = this.http.get<APIResponse<CategoryModel>>(`${this.url}api/Category`, {
-      headers: {
-        'AUTHORIZATION':`Bearer ${token}`
-      }
-     });
+    //  response = this.http.get<APIResponse<CategoryModel>>(`${this.url}api/Category`, {
+    //   headers: {
+    //     'AUTHORIZATION':`Bearer ${token}`
+    //   }
+    //  });
+
+    response = this.http.get<APIResponse<CategoryModel>>(`${this.url}api/Category`);
      return response;
   }
 

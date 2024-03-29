@@ -449,3 +449,22 @@ https://github.com/maheshsabnis/rhealTS
     - Angular 15+ Guards
         - Create a function that is injected with the Authentication Service and Router and this will contain logic for navigation after the login state information is found
         - COnfigure the 'canActivate' property of 'Route' class to this method    
+- HttpInteceptor
+    - AN Object that modifies the ougoing HTTP Request as well as an Incomming HTTP Response from and to Angular application
+        - A Centralized Logic that will be incorporated in every HTTP COmmunication from each Angular Service Object
+
+        - @angular/common/http
+            - HttpInterceptor interface
+                - The 'intercept(HttpRequest, HttpHandler):Observable<HttpEvent>' method 
+                    - HttpRequest: Represent a current outgoing request
+                    - HttpHandler: An object that provides an access of current Http Communication and allows to modify it as per the need
+                    - HttpEvent: Represent the Http Communication Status after the modification
+            - Upto to Angular 15, The Interceptor is a class that implements HttpInterceptor interface and implements its intercept() method with Request Modifiiction Logic
+                - The Actual HTTP Logic service  (get/post/put/delete) is injected in the interceptor class using constructor injection
+                - We used to register this class as dependency in Angular Module i.e. @NgModule in its provders property
+                - Refer: https://www.webnethelper.com/2020/01/authenticating-angular-8-client.html
+
+            - ANgular 15+
+                - HttpInterceptor is a method that return HttpInterceptorFn class it contains logic for Modifiying the request
+                    - We regiser it as dependency in the app.config.ts file using the following method
+                        - provideHttpClient(withInterceptors([INTERCEPTOR-METHOD]))

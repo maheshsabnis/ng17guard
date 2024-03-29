@@ -23,7 +23,7 @@ export class CategoryHttpComponent implements OnInit {
   }
   ngOnInit(): void {
     // Always perform Http Calls from this method
-    this.serv.getData("").subscribe({
+    this.serv.getData().subscribe({
       next:(response)=>{
          this.categories = response.Records;
          this.message = response.Message;

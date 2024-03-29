@@ -17,5 +17,5 @@ import { RouterContainerComponent } from './app/routingapp/router-container/rout
 // Parameters:
 // P1: The Class Name of the Standalone Component
 // P2: The Configuration for Running the Component in Browser e.g. Router, hyderation, Http Client, etc.
-bootstrapApplication(RouterContainerComponent, appConfig)
+bootstrapApplication(AuthenticateComponent, appConfig)
   .catch((err) => console.error(err));

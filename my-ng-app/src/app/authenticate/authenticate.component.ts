@@ -43,8 +43,8 @@ export class AuthenticateComponent {
   }
   getCategories():void {
     // Read the Token from SessionStorage
-    let token = sessionStorage.getItem('token');
-    this.catServ.getData(token)
+   // let token = sessionStorage.getItem('token');
+    this.catServ.getData()
       .subscribe({
         next:(response)=>{
            this.categories = response.Records
