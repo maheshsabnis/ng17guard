@@ -50,3 +50,18 @@
     - Performing CRUD Operations on CategoryAPI
 # Date: 28-March-2024
 1. Complete SPA to perform CRUD operation with the product. 
+
+# Date: 29-March-2024
+1. Let the ASP.NET Core API use the Role BAsed Security
+2. In Angular Application, make sure that the following Component as accessed by specific roles
+    - ListCategories, ViewSpecificCategory: Manager, Clerk, and Operator
+    - Create , Update: Manager and Clerk
+    - Delete: Manager
+
+    path: 'manager', component: ManagerComponent, canActivate: [AuthorizationGuardService],
+    data: {roles: Roles.Manager},    
+3. Make sure that the RouteLinks are visible only to the role of Login Authenticated User
+````javascript
+    - @if(Role === 'Manager' || Role === 'Clerk')
+        - <a [routerLink]='[create]'>
+````

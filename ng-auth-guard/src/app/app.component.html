@@ -3,14 +3,20 @@
 <table class="table table-bordered table-striped table-danger">
    <tbody>
       <tr>
+        <td>
+          <a [routerLink]="['']">Auth Guard Demo</a>
+      </td>
          <td>
-             <a [routerLink]="['']">Home</a>
+             <a [routerLink]="['home']">Home</a>
          </td>
          <td>
           <a [routerLink]="['login']">Login</a>
          </td>
          <td>
           <a [routerLink]="['category']">Category</a>
+         </td>
+         <td>
+           <button class="btn btn-warning" (click)="logOff()">LogOff</button>
          </td>
       </tr>
    </tbody>

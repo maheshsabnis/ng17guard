@@ -8,19 +8,19 @@ import { Login } from './login';
   providedIn: 'root'
 })
 export class AuthenticateService {
-  public authenticatedUserSubject: BehaviorSubject<SecurityResponse>;
-  public authenticatedUser: Observable<SecurityResponse>;
+  // public authenticatedUserSubject: BehaviorSubject<SecurityResponse>;
+  // public authenticatedUser: Observable<SecurityResponse>;
   constructor(private http:HttpClient) {
     let token = sessionStorage.getItem('token') as string;
-    this.authenticatedUserSubject = new BehaviorSubject<SecurityResponse>(JSON.parse(token));
-    this.authenticatedUser = this.authenticatedUserSubject.asObservable();
+    // this.authenticatedUserSubject = new BehaviorSubject<SecurityResponse>(JSON.parse(token));
+    // this.authenticatedUser = this.authenticatedUserSubject.asObservable();
   }
  //https://localhost:7134;http://localhost:5039
   authUser(user:Login): Observable<SecurityResponse> {
      let response:Observable<SecurityResponse>;
 
      response = this.http.post<SecurityResponse>("https://localhost:7134/api/Security/auth",
-          Login,
+     user,
           {
               'headers': {
                 'Content-Type': 'application/json'
@@ -29,12 +29,17 @@ export class AuthenticateService {
      return response.pipe(map((resp)=>{
       sessionStorage.setItem('token', resp.Token);
       sessionStorage.setItem('isLogged', "yes");
-      this.authenticatedUserSubject.next(resp);
+      // this.authenticatedUserSubject.next(resp);
       return resp;
      }));
+
   }
+  // public get currentUserInfo(): SecurityResponse {
+  //   return this.authenticatedUserSubject.value;
+  // }
+
   logout(): void {
     sessionStorage.clear();
-    this.authenticatedUserSubject.next(new SecurityResponse('','',false));
+    //this.authenticatedUserSubject.next(new SecurityResponse('','',false));
   }
 }

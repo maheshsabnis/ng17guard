@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { AuthenticateService } from './authenticate.service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,9 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'ng-auth-guard';
+  constructor(private serv:AuthenticateService, private router:Router){}
+  logOff():void {
+    this.serv.logout(); // CLear the Session Storage
+    this.router.navigate(['']); // Navigate to Default route
+  }
 }

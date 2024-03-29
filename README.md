@@ -422,3 +422,30 @@ https://github.com/maheshsabnis/rhealTS
 ````html
             <router-outlet></router-outlet>
 ````
+
+- Controlling Angular ROuting with Security 
+    - The 'canActivate' property of 'Route' object
+        - Loads and use the Angular Service that manages the routing based on security
+            - Security Service: User and Roles Based Login Process based on Server-Side APIs
+            - Guard Service: The service that is injected with following 2 objects
+                - The Security Service
+                    - Must provide a notification that the use is loggedIn
+                        - UserName or RoleName or Token
+                - The Router Object
+                    - Based on the State of Authentication it will redirect to the requested URL
+                        - Either a Fix URL that will be redirected after authentication
+                        - OR a return URL that was requested before login  or authentication (a return url) 
+    - Login Process MUST use the Login 'State' Information (?)      
+        - The Login State means the Authentication Information (Token / AuthKey) thats MUST be send to Server-Side from client for each request so that the Server-Side can verify the User's Identity
+            - If the client is browser, then store information in Browser's STorage 
+                - loaclStorage, sessionStorage, indexedDB, etc.
+        - The Auth Guard can make use of the  Login State to manage the Route Navigation
+    - Depricated Objects for Guard
+        - ActivatedRouteSnapshot and RouterSnapshot         
+            - ActivatedRouteSnapshot: Verify the route path from ROute Table
+            - RouterSnapshot: Used for the return URL so that after the authentication navigate to the requested URL      
+        - The 'CanActivate' interface with its 'canActivate(ActivatedRouteSnapshot,RouterSnapshot)' method
+            - Responsible to contains logic for the Guarded Routes
+    - Angular 15+ Guards
+        - Create a function that is injected with the Authentication Service and Router and this will contain logic for navigation after the login state information is found
+        - COnfigure the 'canActivate' property of 'Route' class to this method    
