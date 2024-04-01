@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges, ɵprovideZonelessChangeDetection } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../models/app.product.model';
 import { ProductLogic } from '../logic/app.product.logic';
 import { Categories, Manufacturers } from '../models/app.constants';
 import { SelectComponent } from '../customdirectives/componentdirective/select/select.component';
+import { SampleComponent } from './sample/sample.component';
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [FormsModule,SelectComponent],
+  imports: [FormsModule,SelectComponent, SampleComponent],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
-export class ProductComponent {
+export class ProductComponent  implements OnChanges{
   product:Product;
   products:Array<Product>;
 
@@ -40,6 +41,9 @@ export class ProductComponent {
 
     // read properties of Product Class
     this.columns = Object.keys(this.product);
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Parent Changed');
   }
 
   clear():void {

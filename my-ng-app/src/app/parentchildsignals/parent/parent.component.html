@@ -1,0 +1,18 @@
+<h1>Parent Component </h1>
+<h3>
+  In Parent Value of Signal 'name': {{name()}}
+</h3>
+
+<button (click)="updateSignalInParent()">Update the Signal in the Parent</button>
+
+<div class="alert alert-danger">
+  nameInput Signal in Angular 17.1 'input' function
+  <br/>
+  <strong>{{nameInput()}}</strong>
+</div>
+
+<br/>
+
+<h6>Rendering the CHild Component</h6>
+
+<app-child [name]="name" [nameInput]="nameInput()"></app-child>

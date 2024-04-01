@@ -13,7 +13,9 @@ import { AuthenticateComponent } from './app/authenticate/authenticate.component
 import { CForkJoinComponent } from './app/cfork-join/cfork-join.component';
 import { BFFComponent } from './app/bff/bff.component';
 import { RouterContainerComponent } from './app/routingapp/router-container/router-container.component';
+import { SignalsComponent } from './app/signals/signals.component';
+import { ParentComponent } from './app/parentchildsignals/parent/parent.component';
 
-const bootstrap = () => bootstrapApplication(AuthenticateComponent, config);
+const bootstrap = () => bootstrapApplication(ParentComponent, config);
 
 export default bootstrap;

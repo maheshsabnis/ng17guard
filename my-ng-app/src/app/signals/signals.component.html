@@ -1,0 +1,84 @@
+<h2>Angular 17 Signals</h2>
+
+<table class="table table-bordered table-striped">
+  <tbody>
+     <tr>
+      <td>
+        Select Vehicle
+      </td>
+      <td>
+        Select Quantity
+      </td>
+     </tr>
+     <tr>
+       <td>
+          <select class="form-control"
+           [value]="selectedVehicle().id"
+           (change)="onSelectedVehicle(($event.target).value)"
+          >
+             <option>Select Vehicle</option>
+             @for (vehicle of vehicles(); track $index) {
+              <option value="{{vehicle.id}}">{{vehicle.name}}</option>
+             }
+          </select>
+       </td>
+       <td>
+        <!--[ngModel] | [value] is just a property binding this will only show
+          the updtaed value of the single that is selected
+          the current value of the signal (quantity())
+          will be passed to   onSelectedQusntity(($event.target).value
+          method call
+        -->
+        <select class="form-control"
+         [value]="quantity()"
+         (change)="onSelectedQusntity(($event.target).value)"
+        >
+           <option>Select Quantity</option>
+           @for (quantity of availableQuantity(); track $index) {
+            <option value="{{quantity}}">{{quantity}}</option>
+           }
+        </select>
+     </td>
+     </tr>
+  </tbody>
+</table>
+<br/>
+<div class="alert alert-warning">
+  <strong>
+     Selected Quantity: {{quantity()}}
+  </strong>
+  <br/>
+  <strong>
+    Selected Vehicle: {{selectedVehicle().name}}
+  </strong>
+  <strong>
+    Selected Vehicle's Unit Price: {{selectedVehicle().price}}
+  </strong>
+  <br/>
+  <strong>
+    Ex-ShowRoomPrice: {{exShowRoomPrice()}}
+  </strong>
+</div>
+<br/>
+<button (click)="savePurchase()">Save My Selection</button>
+<h3>Selected Vehicle for Purchase</h3>
+<table class="table table-bordered table-striped table-dark">
+  <thead>
+      <tr>
+         <th>Id</th>
+         <th>Name</th>
+         <th>Price</th>
+         <th>Total Price</th>
+      </tr>
+  </thead>
+  <tbody>
+    @for (veh of purchasedVehicles(); track $index) {
+      <tr>
+         <td>{{veh.id}}</td>
+         <td>{{veh.name}}</td>
+         <td>{{veh.price}}</td>
+         <td>{{veh.totalPrice}}</td>
+      </tr>
+    }
+  </tbody>
+</table>

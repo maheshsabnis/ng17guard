@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-select',
@@ -6,7 +6,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css']
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent implements OnInit, OnChanges {
 
   private _DataSource:Array<any>;
   private _PropertyName: any;
@@ -21,6 +21,9 @@ export class SelectComponent implements OnInit {
     this._DataSource = new Array<any>();
 
     this.onChange = new EventEmitter<any>();
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('Child Changed');
   }
 
   ngOnInit() {
