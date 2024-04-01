@@ -1,0 +1,95 @@
+<h2>Angular Pipes</h2>
+<div class="container">
+<strong>Date Pipe</strong>
+<!--{{ value_expression | date [ : format [ : timezone [ : locale ] ] ] }}-->
+<div>
+  <p>Today is {{today | date}}</p>
+  <p>Or if you prefer, {{today | date:'fullDate'}}</p>
+  <p>Or if you prefer, {{today | date:'short'}}</p>
+  <p>The time is {{today | date:'h:mm a z'}}</p>
+</div>
+
+<br/>
+<strong>String Pipe</strong>
+<!--{{ value_expression | uppercase }}-->
+<!--{{ value_expression | lowercase }}-->
+<div>
+  <p>Upper Case, {{name | uppercase}}</p>
+  <p>Lower Case, {{name | lowercase}}</p>
+</div>
+<br/>
+<strong>CUrrency Pipe</strong>
+<!--{{ value_expression | currency [ : currencyCode [ : display [ : digitsInfo [ : locale ] ] ] ] }}-->
+<div>
+  <!--output '$0.26'-->
+  <p>A: {{ a | currency }}</p>
+
+  <!--output 'CA$0.26'-->
+  <p>A: {{ a | currency: 'CAD' }}</p>
+
+  <!--output 'CAD0.26'-->
+  <p>A: {{ a | currency: 'CAD' : 'code' }}</p>
+
+  <!--{minIntegerDigits}.{minFractionDigits}-{maxFractionDigits}
+  minIntegerDigits: The minimum number of integer digits before the decimal point.
+   Default is 1.
+
+minFractionDigits: The minimum number of digits after the decimal point.
+ Default is 0.
+
+maxFractionDigits: The maximum number of digits after the decimal point.
+Default is 3.
+
+  -->
+  <!--output 'CA$0,001.35'-->
+  <p>B: {{ b | currency: 'CAD' : 'symbol' : '4.2-2' }}</p>
+
+  <!--output '$0,001.35'-->
+  <p>B: {{ b | currency: 'CAD' : 'symbol-narrow' : '4.2-2' }}</p>
+
+  <p>
+    {{amount | currency:'INR':'symbol-narrow':'4.2-2'}}
+  </p>
+</div>
+<br/>
+<strong>Decimal Pipe</strong>
+<!--{{ value_expression | number [ : digitsInfo [ : locale ] ] }}-->
+<div>
+  <p>
+    No specified formatting:
+    {{ pi | number }}
+    <!--output: '3.142'-->
+  </p>
+
+  <p>
+    With digitsInfo parameter specified:
+    {{ pi | number: '4.1-5' }}
+    <!--output: '0,003.14159'-->
+  </p>
+
+  <p>
+    With digitsInfo and locale parameters specified:
+    {{ pi | number: '4.1-5' }}
+    <!--output: '0 003,14159'-->
+  </p>
+</div>
+
+<br/>
+<strong>Percentage Pipe</strong>
+<!--{{ value_expression | percent [ : digitsInfo [ : locale ] ] }}-->
+<div>
+  <!--output '26%'-->
+  <p>A: {{ a | percent }}</p>
+
+  <!--output '0,134.950%'-->
+  <p>B: {{ b | percent: '4.3-5' }}</p>
+
+</div>
+<br/>
+<strong>Json Pipe</strong>
+<!--{{ value_expression | json }}-->
+<pre>{{ emp | json }}</pre>
+<br/>
+<!--Custom pipe-->
+<p> Get Power: {{2 | power: 10}}</p>
+</div>

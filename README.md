@@ -468,3 +468,19 @@ https://github.com/maheshsabnis/rhealTS
                 - HttpInterceptor is a method that return HttpInterceptorFn class it contains logic for Modifiying the request
                     - We regiser it as dependency in the app.config.ts file using the following method
                         - provideHttpClient(withInterceptors([INTERCEPTOR-METHOD]))
+
+- Pipes
+    - The 'CommonModule' from  @angular/common package defines all pipes
+    - date
+    - currency
+    - uppercase
+    - lowercase
+    - decmimal
+    - json
+    - async
+
+- Apply pipe
+    - {{value | PIPE-NAME: PIPE-PARAMETERS}}
+        - value: The data that is to be transformed
+        - PIPE-NAME: the transform request to Angular so that, the pipe the 'trasform()' method from the Pipe class is invoked and value will be transformed
+        - PIPE-PARAMETERS: Arguments those will be used by the transform function to transform value     

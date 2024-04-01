@@ -15,7 +15,8 @@ import { BFFComponent } from './app/bff/bff.component';
 import { RouterContainerComponent } from './app/routingapp/router-container/router-container.component';
 import { SignalsComponent } from './app/signals/signals.component';
 import { ParentComponent } from './app/parentchildsignals/parent/parent.component';
+import { DemoPipesComponent } from './app/demo-pipes/demo-pipes.component';
 
-const bootstrap = () => bootstrapApplication(ParentComponent, config);
+const bootstrap = () => bootstrapApplication(DemoPipesComponent, config);
 
 export default bootstrap;
