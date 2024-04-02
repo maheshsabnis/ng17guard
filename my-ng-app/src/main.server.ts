@@ -17,6 +17,6 @@ import { SignalsComponent } from './app/signals/signals.component';
 import { ParentComponent } from './app/parentchildsignals/parent/parent.component';
 import { DemoPipesComponent } from './app/demo-pipes/demo-pipes.component';
 
-const bootstrap = () => bootstrapApplication(DemoPipesComponent, config);
+const bootstrap = () => bootstrapApplication(RouterContainerComponent, config);
 
 export default bootstrap;

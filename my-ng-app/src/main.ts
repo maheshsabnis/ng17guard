@@ -20,5 +20,5 @@ import { DemoPipesComponent } from './app/demo-pipes/demo-pipes.component';
 // Parameters:
 // P1: The Class Name of the Standalone Component
 // P2: The Configuration for Running the Component in Browser e.g. Router, hyderation, Http Client, etc.
-bootstrapApplication(DemoPipesComponent, appConfig)
+bootstrapApplication(RouterContainerComponent, appConfig)
   .catch((err) => console.error(err));
