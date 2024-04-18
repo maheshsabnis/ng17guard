@@ -1,0 +1,6 @@
+Shubham Kanade: Calculator, DataGrid, Validations, DynamicForm, Search Across Components, Guards
+
+Sweata Mishara: Calculator is done properly, DataGrid is completed properly, Valdiations are done properly, Seacrch is done properly, Roles and USers are created properly, SPA is completed, Guard Completed 
+
+Veena Yadav: Calculator is done with nide UI, DataGrid is done, Valdiations are done properly, Seacrch is done properly, Roles and USers are created properly, SPA is completed, Guard Completed 
+

@@ -484,3 +484,56 @@ https://github.com/maheshsabnis/rhealTS
         - value: The data that is to be transformed
         - PIPE-NAME: the transform request to Angular so that, the pipe the 'trasform()' method from the Pipe class is invoked and value will be transformed
         - PIPE-PARAMETERS: Arguments those will be used by the transform function to transform value     
+
+
+# Advanced Angular Cosiderations
+- Use "an effective Object Model" (?) for dealing with Data that is demended by one-or-more components  
+    - Read-to-use Objects /  Operators / APIs /  Methods to deal with effeict Data management
+    - Mandatory Dependency of Angular on 'RxJs'
+        - Observable, the Core Type of RxJs
+            - Uses an 'Observer' pattern to manage object(s) and its Subscriber(s) to that latest data can be delivered to each of the Subscriber from object.
+                - a lazy push collection of multiple values so that they can be delivered to subscriber based on Operators and APIs
+                - Operators
+                    - map()
+                    - filter()
+                    - ......
+                - API
+                    - pipe()
+                    - SwitchMap()
+                    - forkJon()
+                    - combibeLatest()
+                    - merge()
+                    - ....
+        - Observale
+            - Created using 'new' nmoniker
+                - myObseravble = new Observable(Observer object to create an observable)
+            - create using operators objects from 'rxjs'
+                - of(), from()
+                    - of(STREAM-OF-VALUES)
+                    - from (JS-ARRAY)
+            - IMP POINT
+                - Use '$' suffix to define an observable
+                    - e.g.
+                        - data$
+                            - Default observable in Angular
+        -  fromEvent()
+            - A special object that is used to track and monitor an event on DOM and emit the notification from it
+
+- If the data is large endough to maintain in browser and it is also demanded by various components 'on-demand-based-on-query' then consider using 'Application State Management' (?)
+    - Ready-to-use Object Model that will be used for Application State Management in Browser
+
+- RICH and effective UI with Responsiveness then use 'Read-to-use-and-customizable' UI Components
+    - Project Specific re-usable UI Components, designed and developed by the TEAM
+    - Vendor-Specific UI Components OR CLIENT-SPECIFIC-COMPONENTS, Designed by TEAM or Provided by the Vendor
+    - Use of LitElements or Material Elements 
+
+- Hybridization of User Interface along with its underline Object Model     
+    - JS Agnostic Libs / Frwks Object Model
+
+- Angular Project Architecture
+    - Monorepo, using Nx
+        - Source Code
+        - CSS
+            - LESS
+            - SCSS
+        - Third-Party JS Files    

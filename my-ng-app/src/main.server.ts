@@ -16,7 +16,8 @@ import { RouterContainerComponent } from './app/routingapp/router-container/rout
 import { SignalsComponent } from './app/signals/signals.component';
 import { ParentComponent } from './app/parentchildsignals/parent/parent.component';
 import { DemoPipesComponent } from './app/demo-pipes/demo-pipes.component';
+import { BasicobservableComponent } from './app/basicobservable/basicobservable.component';
 
-const bootstrap = () => bootstrapApplication(RouterContainerComponent, config);
+const bootstrap = () => bootstrapApplication(BasicobservableComponent, config);
 
 export default bootstrap;
