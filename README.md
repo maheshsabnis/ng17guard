@@ -518,6 +518,26 @@ https://github.com/maheshsabnis/rhealTS
                             - Default observable in Angular
         -  fromEvent()
             - A special object that is used to track and monitor an event on DOM and emit the notification from it
+        - Subject
+            - A special Type on Observable that allows values to be multicasted (processed) to many Observers.
+                - This acts as a Observable (Receiveddata agains time) as well as observer (Listen to data changes)
+                - The moment the data is changes, it will emitted to subscriber using the 'next()' method
+                - All Subscribers will get this new value
+            - BehaviorSubejct
+                - A varient of the Subject 
+                - Needs an initial value and when the value is changed this current vale emitted
+            - AsyncSubject
+            - RelaySubject
+    - OPerators to QUery to Observables
+        - take(), takeLast(), takeUntil(), takeWhile()
+        - skip(), skipUntil(), skipWhile()
+
+        - Operatots to extract count of records emitted by the obserable
+    - metgeMap()
+        - The Operator method that will be used to merge various observable together
+        - use this operator when you want to work with mutiple observables at a time
+        and smothly pipe from one observable to other observable  
+
 
 - If the data is large endough to maintain in browser and it is also demanded by various components 'on-demand-based-on-query' then consider using 'Application State Management' (?)
     - Ready-to-use Object Model that will be used for Application State Management in Browser

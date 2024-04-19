@@ -65,3 +65,13 @@
     - @if(Role === 'Manager' || Role === 'Clerk')
         - <a [routerLink]='[create]'>
 ````
+
+
+Date: 1-April-2024
+
+1. Create an angular service that will use Behavior Subject to provide data communication scross components based on following requirements
+    - Once the Category Name is selected from the Dropdown of one component, the products component should show all products of that category and the Customer Component should shlo list of those products for which orders are placed by these customers 
+        - Categories
+        - Products
+        - Customers
+        - Orders

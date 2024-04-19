@@ -1,0 +1,16 @@
+<h3>The Behavioral SUbject Component</h3>
+
+<app-naviagation></app-naviagation>
+
+<hr/>
+
+<button (click)="showHide(!flag)">Show / Hide The Content Component</button>
+
+@if(flag) {
+  <app-content></app-content>
+} @else {
+  <strong>
+      No Component to Show
+  </strong>
+}
+

@@ -1,0 +1,18 @@
+<h3>The Navigation Component</h3>
+<strong>
+   This component will change data and accordingly the Content Component will change itself
+</strong>
+
+<!--Generate Button based on data from the OBservable Subscription
+ Once one-of-this button is clicked that data will be changes in
+ BehaviorSubject and other subscriber (ContentCOnponent) will Receive that data
+-->
+
+
+@for (menu of menus; track $index) {
+  <ul>
+     <li>
+       <button (click)="getSelectedMenu(menu.id)">{{menu.name}}</button>
+     </li>
+  </ul>
+}
