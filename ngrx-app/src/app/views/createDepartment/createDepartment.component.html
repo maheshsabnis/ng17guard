@@ -1,0 +1,44 @@
+<h5>Create New Department</h5>
+
+<div class="container">
+  <div class="form-group">
+    <label for="">DeptNo</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="departement.DeptNo"
+      placeholder="Enter DeptNo"
+    />
+  </div>
+  <div class="form-group">
+    <label for="">DeptName</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="departement.DeptName"
+      placeholder="Enter DeptName"
+    />
+  </div>
+  <div class="form-group">
+    <label for="">Location</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="departement.Location"
+      placeholder="Enter DeptNo"
+    />
+  </div>
+  <div class="form-group">
+    <label for="">Capacity</label>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="departement.Capacity"
+      placeholder="Enter DeptNo"
+    />
+  </div>
+  <div class="btn-group-lg">
+    <button class="btn btn-warning" (click)="clear()">New</button>
+    <button class="btn btn-success" (click)="save()">Save</button>
+  </div>
+</div>

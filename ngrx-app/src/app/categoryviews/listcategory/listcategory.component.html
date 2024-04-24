@@ -1,0 +1,6 @@
+<h3>List of Categories</h3>
+<button (click)="getData()">Get Data</button>
+<strong>
+  Data:
+  {{categories$ | async | json}}
+</strong>

@@ -557,3 +557,192 @@ https://github.com/maheshsabnis/rhealTS
             - LESS
             - SCSS
         - Third-Party JS Files    
+
+# NgRx
+- Its a framework used for following or having following features
+    - Manage the Global and Local State
+        - For all components
+        - For a Single Component
+    - Cleaner Component architecture
+        - Isolate a Component from all Side-Effects (Aync Operations e.g. HTTP Calls)
+            - All Side-Effects are delegated to other objects aka Effect
+    - Integration with Angular Router
+    - Developer Tools
+    - Entity Collection Management for Data/Schemas/Queries  
+
+- NgRx Core Objects
+    - Model class
+````javascript
+export class Department {
+  constructor(
+    public DeptNo:number,
+    public DeptName: string,
+    public Location: string,
+    public Capacity: number
+  ){}
+}
+
+````
+    - Store
+        - The Global Application State
+        - Each Components subscribe to the store
+        - The Store is always updated by the Reducer
+        - The Component can query data from the Store using the Selector Queries
+````javascript
+/* Define a State Schema here, the Application will use this state from the Store */
+
+import { Department } from "../models/app.department.model";
+
+/* Define an Interface that will make sure that, the propser query data will be emitted to the componsment  using the state */
+
+export interface IDepartmentState {
+   departments:Department[], /* For all Depertments */
+   department: Department, /* For creatng / updating / Deleting Department */
+   selectedDepartment: Department  /* For Selecting the Department for Update / Delete */
+}
+
+/* Define an Initial State */
+
+export const initialState: IDepartmentState = {
+   departments:[],
+   department: new Department(0,'','',0),
+   selectedDepartment: new Department(0,'','',0)
+}
+
+/* Define a Store */
+/* This is the Schema of the Store that will be loaded when the App is locaded and Initialized */
+
+export interface IAppStore {
+   appStore: IDepartmentState
+}
+
+
+
+````
+
+
+
+    - Actions
+        - Methods those are dispached by the Component aka Input Actions
+        - Alternatively, an effect can also dispatch action aka Ouput Actions
+        - These actions may have input parameter
+        - If these actions are returning a data, then it is called as 'Payload'
+        - Please do not write heavy-loaded logic e.g. HTTP Calls, Network Calles, etc. in action. Instead use Effects for the same  
+        - Actions tells 'What has happened?'
+        - The 'createAction()' function object from '@ngrx/store'
+            - The default payload is declared using 'props' object from '@ngrx/store'
+````javascript
+
+/* Define actions here */
+import { createAction, props } from "@ngrx/store";
+import { Department } from '../models/app.department.model';
+
+/* Lets Define an action */
+/* The action to create new Department, the props aka the payload if of the type Department, that represents the data that is send by the Component*/
+export const postDepartmentInput = createAction(
+  '[postDepartment] New Department Input',
+);
+
+export const postDepartmentSuccess = createAction(
+  '[postDepartment] New Department Success',
+  props<{department:Department}>()
+);
+
+export const getDepartmentsInupt = createAction(
+  '[getDepartments] Get All Departments Input',
+);
+
+
+export const getDepartmentsSuccess = createAction(
+  '[getDepartments] Get All Departments Success',
+  props<{departments:Department[]}>()
+);
+
+
+````
+    - Reducers
+        - An object that is contineously in excution at global level
+        - THis monitors each action dispatched from Component or from effects
+        - The output from an action is read bu reducer so that it can be updated in store
+        - Please do not write any business logicin these function object
+        - Technically, it is a function that has same input and output parameters aka A Pure JavaScript Function  
+        - The 'createReducer()' function object from '@ngrx/store' is used to create reducer
+            - This has 2 parameters
+                - Initial State
+                - an 'on()' function object, that is used to listen to the dispatched action and accordingly read data from Store and return it
+````javascript
+
+/* Defining Reducers */
+
+import { createReducer, on  } from "@ngrx/store";
+import { initialState } from "../state";
+
+/* Import all action methods at once */
+
+import * as DepartmentActions from './../actions';
+
+/* The reducer funciton will update the initialState based on the payload returned by each function  */
+export const departmentReducer = createReducer(
+
+  initialState,
+  on(DepartmentActions.getDepartmentsSuccess, (state, {departments})=>({
+    ...state, /* The State from the store from which data is picked */
+    departments /* Actual Data that is picked */
+  })),
+  on(DepartmentActions.postDepartmentSuccess, (state, {department})=>({
+    ...state,
+    department
+  }))
+);
+
+````
+    - Effects
+        - Objects those are responsible for isolating 'Side-Effects' from components
+        - They are responsible for managing all async calls
+        - Effect dispatches an output action when the Async Operation is over (Success /  Fail)
+        - Uses RxJs Oprators for managing Observables
+        - Its an Angular Service
+    - Selector
+        - A PURE function, this is used to Select piece of data from store
+        - The 'createSelector()' function object from '@ngrs/store'
+````javascript
+/* The Selectors, this will be used by Components, Effects to Query to store for data*/
+
+import { createSelector } from "@ngrx/store";
+
+import { IAppStore, IDepartmentState } from "../state";
+
+/* Subscribe to the Store So that all data from the Store is avaiable for query */
+
+export const appStore = (state:IAppStore)=> state.appStore;
+
+/* Define Selectors for Query to the 'appStore'*/
+
+export const selectDepartmentsSelector = createSelector(
+  appStore,
+  (state:IDepartmentState)=>state.departments /* Get all Departments from 'appStore' */
+);
+
+export const selectADepartmentSelector = createSelector(
+  appStore,
+  (state:IDepartmentState)=>state.selectedDepartment /* A Single Department */
+);
+
+
+````
+    - Entity
+        -  State Adapater for managing record collections 
+    - Views
+        - Angular Components
+- Packages
+    - @ngrx/store
+    - @ngrx/effects
+    - @ngrx/entity
+    - @ngrx/store-devtools
+- Steps of Implementation
+    - Define State
+    - Define Selectros
+    - Define Components
+    - Define Actions
+    - Define Reducers
+    - Define Effects 
