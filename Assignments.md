@@ -75,3 +75,10 @@ Date: 1-April-2024
         - Products
         - Customers
         - Orders
+
+
+# Date: 25-April-2024
+
+1. Complete the Angular App with NGRX for CRUD and Search Operations on Store for Products based on Category
+    - Design Actions, Effects, Reducers, Selectors accordingly
+    - Create routes for CRUD operations as well as search of Products based on Category NAme by querying to the Store     
