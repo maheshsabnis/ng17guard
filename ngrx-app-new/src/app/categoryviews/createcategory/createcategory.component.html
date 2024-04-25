@@ -1,0 +1,19 @@
+<h2>Create Category</h2>
+<div class="container">
+  <div class="form-group">
+    <label for="CatrgoryId">Catrgory Id</label>
+    <input type="text" class="form-control" placeholder="Enter Category Id" name="CategoryId" [(ngModel)]="category.CategoryId">
+  </div>
+  <div class="form-group">
+    <label for="CatrgoryName">Catrgory Name</label>
+    <input type="text" class="form-control" placeholder="Enter Category Name" name="CategoryName" [(ngModel)]="category.CategoryName">
+  </div>
+  <div class="form-group">
+    <label for="BasePrice">Base Price</label>
+    <input type="text" class="form-control" placeholder="Enter Base Price" name="BasePrice" [(ngModel)]="category.BasePrice">
+  </div>
+  <div class="btn-group-lg">
+    <button class="btn btn-warning" (click)="clear()">New</button>
+    <button class="btn btn-success" (click)="save()">Save</button>
+  </div>
+</div>
