@@ -1,0 +1,16 @@
+const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
+
+module.exports = withModuleFederationPlugin({
+ /* Remote means the 'Remote Project' aka the Micro Frontend app that will be loaded. Refer the webpack.config.js from the customer-mfe project
+ The name of the Remote project is 'customer-mfe'.  Refer the webpack.config.js from the customer-mfe project
+ */
+  remotes: {
+    /* The 'name' of the remote Project: The  'port' from which the remote project is exposed */
+    "customer-mfe": "http://localhost:4200/remoteEntry.js",
+  },
+
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
+});

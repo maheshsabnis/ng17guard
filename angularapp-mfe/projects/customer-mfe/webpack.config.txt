@@ -1,0 +1,31 @@
+const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
+
+module.exports = withModuleFederationPlugin({
+
+  name: 'customer-mfe',
+
+  /* Since the Angular 17+ Standalone Components is used in customer-mfe project
+   the 'exposes' will accepts the entrypoint as app.component.ts for the remote application
+  */
+  // exposes: {
+  //   "./routes": "./projects/customer-mfe/src/app/app.routes.ts",
+  //   './Module': './projects/customer-mfe/src/app/customer/customer.module.ts',
+  // },
+
+  exposes: {
+    /* The ROute has the LAzy Loading */
+    "./routes": "./projects/customer-mfe/src/app/app.routes.ts",
+    './Component': './projects/customer-mfe/src/app/app.component.ts'
+  },
+
+  // exposes: {
+  //   './Component': './projects/customer-mfe/src/app/app.component.ts',
+  // },
+
+
+  /** Used in Case when multiple Remotes wants to share common JS Packages */
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
+});

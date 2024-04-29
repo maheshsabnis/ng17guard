@@ -1,0 +1,21 @@
+<h3>Customer List Component</h3>
+
+
+ <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>
+        Customer Id
+      </th>
+      <th>
+        Customer Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cust of customers">
+       <td>{{cust.CustomerId}}</td>
+       <td>{{cust.CustomerName}}</td>
+    </tr>
+  </tbody>
+ </table>

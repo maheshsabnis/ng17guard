@@ -746,3 +746,294 @@ export const selectADepartmentSelector = createSelector(
     - Define Actions
     - Define Reducers
     - Define Effects 
+
+# Using Micro-FrontEnd using Nx
+1. Install Nx Globally
+    - npm install --global nx
+2. Create a Workspace for the Project
+    - npx create-nx-workspace@latest
+3. Add Applications for Micro-Front-Ends
+    - Shell
+        - nx generate @nx/angular:app shell
+    - Angular App
+        - nx generate @nx/angular:app customer-mef
+        - nx generate @nx/angular:app order-mef
+    - Add Library
+        - nx generate @nx/angular:lib shared-data
+
+4. Creating Micro-FrontEnd (MFE)
+    - install the Module Fedaration
+        - npm install @angular-architects/module-federation
+
+    - Confogure the Shell App as a Host / Container Application for the MFE App 
+        - nx g @angular-architects/module-federation --project [PROJECT-NAME] --port [PORT-NUMBER-FOR-HOSTING-SHELL-PROJECT] --type host
+        - e.g.
+            - nx g @angular-architects/module-federation:init --project Shell--port 4200 --type host
+    - The Shell has to call the Remote MFE App, we need to inform the Shell that which is remote MFE App
+        - nx g @angular-architects/module-federation:init --project customer-mef --port 4300 --type remote
+        - nx g @angular-architects/module-federation:init --project order-mef --port 4400 --type remote
+5. If using CSS in project
+    - Style.css modify as follows
+        - @import [RELATIVE-PATH-FOR-CSS-FILE]
+6. Provide Metanames of All Remote Projects to Shell app so that the Shell app will load modules from it dynamically
+    - In Shell Project create a fiele named decl.d.ts, and declare all Remote Projects in it
+        - declare module 'customer-mef/Module' 
+
+# Micro Front-End using Angular Workspace
+1. Create a Workspace
+    ng new angularapp-mfe --create-application false --skip-tests
+2. Add Angular Apps in Workspace, this will create a Project Folder and add new Angular app in it 
+    - ng g app customer-mfe --skip-tests --routing
+3. Add a New HomeComponent to this application. The following command will add a new folder named 'components' in the 'customer-mfe' project
+    - ng g c components/home --project customer-mfe
+4. In the customer-mfe app add a new Module, this will be a feature Module (A Child-Module) which will have components in it. The following command will generate a new module named 'customer'
+    - ng g module --project customer-mfe --routing customer
+5. Add a New Component NAmed CustomerList in the CustomerModule using the FOllowing command, this will add a new folder named 'components' in the 'customer' folder
+    - ng g c --project customer-mfe --module customer customer/components/CustomerList
+6. Modify the customer-routing.module.ts by adding route for 'CustomerListComponent'
+````javascript
+/* Define Routing */
+const routes: Routes = [
+  {
+    path:'customers',
+    component: CustomerListComponent
+  }
+];
+````
+
+7. Lazy Load the CustomerModule in the customer-mfe project's app.routes.ts 
+````javascript
+export const routes: Routes = [
+  {
+    path:'',
+    component:HomeComponent,
+    pathMatch:'full' /* The HomeComponent from customer-mfe app only */
+  },
+  {
+    path: 'customerslist',
+    /* Lazy Load the CustomerModule, and hence all components from it will be lazily loaded */
+    loadChildren:()=>import('./customer/customer.module').then(m=>m.CustomerModule)
+  }
+];
+
+````
+8. Install bootstrap and Other JS libs if required
+ - npm install bootstrap jquery
+
+9. COnfigure the bootstrap in angular.json
+
+````javascript
+....
+ "styles": [
+              "projects/customer-mfe/src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+            ......
+````
+
+10. The Customer Model in Models folder of customer-mef project
+
+````javascript
+export class Customer {
+  constructor(
+    public CustomerId:number,
+    public CustomerName: string
+  ){}
+}
+
+````
+
+11. Some Default data for Customers in CustomerListComponent
+
+````javascript
+import { Component, OnInit } from '@angular/core';
+import { Customer } from '../../../models/app.customer.model';
+
+@Component({
+  selector: 'app-customer-list',
+  // standalone: true,
+  // imports: [],
+  templateUrl: './customer-list.component.html',
+  styleUrl: './customer-list.component.css'
+})
+export class CustomerListComponent implements OnInit{
+  customers:Array<Customer>;
+  constructor(){
+    this.customers = new Array<Customer>();
+  }
+  ngOnInit(): void {
+     this.customers.push(new Customer(101,'Mahesh'));
+     this.customers.push(new Customer(102,'Tejas'));
+     this.customers.push(new Customer(103,'Amit'));
+     this.customers.push(new Customer(104,'Ajit'));
+     this.customers.push(new Customer(105,'Abhijit'));
+     this.customers.push(new Customer(106,'Mayuresh'));
+  }
+
+}
+
+````
+
+12. The Customer Table to show the Customer List in html of CustomerListComponent
+
+````html
+<h3>Customer List Component</h3>
+
+
+ <table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>
+        Customer Id
+      </th>
+      <th>
+        Customer Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cust of customers">
+       <td>{{cust.CustomerId}}</td>
+       <td>{{cust.CustomerName}}</td>
+    </tr>
+  </tbody>
+ </table>
+
+````
+13. Navigation Link for customer-mfe in app.component.html of custimer-mfe project
+
+````html
+<h2>The Customer Micro Frontend App</h2>
+<nav class="navbar navbar-expand-lg bg-primary bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Customer Micro-Frontend</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="['']">Home</a>
+        </li>
+        <li class="nav-item">
+          <!--The ROuter Link for Lazily loaded Component-->
+          <a class="nav-link" routerLink="customerslist/customers">Customer List</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+
+````
+14. Make sure that, the RouterModule is referred in the app.componnt.ts of customer-mfe project
+
+````javascript
+import { Component } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, RouterModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
+})
+export class AppComponent {
+  title = 'customer-mfe';
+}
+
+````
+
+Follow steps from 2 to 14 for each MFE Project by adding Components, MOdules, Models, Services, ROuting , etc. as the need
+
+# The MOST imprtant Steps for Creating the Module Ferederation for the Application
+15. install the  @angular-architects/module-federation
+    - npm install @angular-architects/module-federation
+16. Make the customer-mfe is the Remote Project. The following commnad exposes the 'customer-mfe' remote project on port 4200
+    - ng add @angular-architects/module-federation --type remote --project customer-mfe --port 4200
+    
+
+17. The webpack.config.js in customer-mef project will be as follows
+````javascript
+const { shareAll, withModuleFederationPlugin } = require('@angular-architects/module-federation/webpack');
+
+module.exports = withModuleFederationPlugin({
+
+  name: 'customer-mfe',
+
+  /* Since the Angular 17+ Standalone Components is used in customer-mfe project
+   the 'exposes' will accepts the entrypoint as app.component.ts for the remote application
+  */
+  exposes: {
+    './Module': './projects/customer-mfe/src/app/customer.module.ts',
+  },
+
+  /** Used in Case when multiple Remotes wants to share common JS Packages */
+  shared: {
+    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  },
+
+});
+
+````
+
+
+# Creating a Shell Project
+
+18. Run the FOllowing command to create a new Workspace for Shell Project
+-ng new ecomm-host --create-application false --skip-tests
+19. Create a shell application
+    - ng g app ecomm-shell --skip-tests --routing
+20. Lets add a components, then install bootstrap and modify the angular.json like the customer-mfe application
+    - ng g c components/home --project ecomm-shell     
+21. Create a ROuting for HomeComponent in app.routes.ts of shell project
+````javascript
+import { Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+
+export const routes: Routes = [
+  {
+    path:'',
+    component:HomeComponent,
+    pathMatch:'full'
+  }
+];
+
+````
+
+22. VERY IMPORTANT STEP
+    - COnfigure the Shell Project to run on Port 5200
+    - ng add @angular-architects/module-federation --type host --project ecomm-shell --port 5200 
+23. In the shell project, the 'ecomm-shell' project, in 'src' folder add a new file name 'decl.d.ts' and add the module path for the Exposed component
+NOTE: We need this file to prevent the compiler errors while defining the Routing in Host/Shell project for Remote module
+````javascript
+declare module 'customer-mfe/Module'
+````
+
+24. MOdify the app.route.ts to define routing for the Remote projet(s)
+````javascript
+import { Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+
+
+export const routes: Routes = [
+  {
+    path:'',
+    component:HomeComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'cust',
+    loadChildren:()=>import('customer-mfe/Module').then(m=>m.CustomerModule)
+  }
+];
+
+
+````
