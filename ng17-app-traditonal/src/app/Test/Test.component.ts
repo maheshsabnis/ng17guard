@@ -8,11 +8,27 @@ import { Component, OnInit } from '@angular/core';
 export class TestComponent implements OnInit {
 
   message:string;
+  badgeCounter:number;
   constructor() {
     this.message = "I am a Test COmponent";
+    this.badgeCounter = 0;
    }
 
   ngOnInit() {
   }
+  hidden = false;
+
+  toggleBadgeVisibility() {
+    this.hidden = !this.hidden;
+  }
+
+
+  increaseBadgeCounter():void {
+  //  this.badgeCounter++;
+  setInterval(()=>{
+    this.badgeCounter++
+  },2000);
+  }
+
 
 }
