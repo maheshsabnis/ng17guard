@@ -64,6 +64,8 @@ https://github.com/maheshsabnis/rhealTS
             - This will provide the 'ng' command Line Interface to create Angular Application
         - Command to create a new Angular Application
             - ng new [NAME-OF-APP]
+    - Anguar CLI Command to create Angular 17 Application using Traditional Approach of @NgModule
+        -  ng new appwostandlone --standalone false
 - Basic Building BLocks of Angular
     - Module
         - An Angular Deployable Object-Model
@@ -1035,5 +1037,30 @@ export const routes: Routes = [
   }
 ];
 
+
+````
+
+# Communication across Host-to-Remote and Remote-To-Remote App 
+    - Use the 'CustomEvent' object to create a new Custom Event
+        - CustomEvent('EVENT-NAME', OPTIONS)
+            - EVENT-NAME, the name of the Custom Event
+            - OPTIONS, a JSON object that contains 'detail' object
+                - details, a JSON Object that helps properties to pass data to event (payload)
+````javascript
+/*Declare Custom  event*/
+ const event = new CustomEvent('filter_data', {
+     detail:{
+        name: VALUE
+     }
+ });
+````
+        - Use 'window.dispatchEvent(CUSTOM-EVENT-OBJECT)' to dispatch / raise an event
+````javascript
+ window.dispatch(event);
+````
+        
+        - Use 'window.addEventListener()' to subscribe to an event  
+````javascript
+    window.addEventListener('filter_data', CALLBACK-FUNCTION)
 
 ````

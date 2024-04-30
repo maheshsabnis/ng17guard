@@ -82,3 +82,14 @@ Date: 1-April-2024
 1. Complete the Angular App with NGRX for CRUD and Search Operations on Store for Products based on Category
     - Design Actions, Effects, Reducers, Selectors accordingly
     - Create routes for CRUD operations as well as search of Products based on Category NAme by querying to the Store     
+
+# Date: 30-April-2024
+
+1. Modify the MicroFront-End App to do the following:
+    - Modify the App to use the serach in Inventory-MFE as well as Order-MFE
+        - Inventory-MEF will filetr data based on the Product Name
+        - The Order-MFE will Show the orders placed by Customer or for Product Name
+
+
+    - The Customer-MFE Applicaiton will dispatch an event on click of the Customer Table where ths event will carry customer data e.g. Name of the customer in event details object.
+    - The Event information will be subscribed by the Shell and then when the Order-MEF is loaded, let it show orders placed by that customer  
