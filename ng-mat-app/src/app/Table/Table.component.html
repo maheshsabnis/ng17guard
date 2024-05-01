@@ -1,0 +1,75 @@
+<h6>The Material Table</h6>
+<!--
+  mat-table: AN Attribute Directive that enhances the HTML Table as Material Table
+  [dataSource]: An Input property to accept collection of data to show in Tabular form
+  matColumnDef: An Attribute Directive that will be used to define a Column Type that is Mapped to a porpetry from the dataSource array
+
+  mat-header-cell: AN Attribute Directive that will make the property from dataSource as Header for the Column
+
+  *matHeaderCellDef: A Structural directive that will generate cell data in tds for all rows for data from dataSource mapped with the property for header
+
+  mat-cell: An ATtribute directive that represents databount cell from the table
+
+  *matCellDef: A Structural Directive to show the data in cell by internally iterating over the Data Source
+
+  mat-header-row: An attribute Directive to generate the Table Header row based in ng-container
+
+  *matHeaderRowDef: A Structurel Directive to geberate Header row definition to show data in it to  header for each column
+
+  mat-row: An Attribute Directive thar represents the Data Bound Row for Table
+
+  *matRowDef="let row; columns: dataColumns": A Mechanism to generate Data Bound Rows  based on [dataSource] by mapping each record from dataSource with a property from dataColumns
+-->
+<div>
+  <!--Add Paginator for MatTable-->
+<mat-paginator [pageSizeOptions]="pageSizeOptions"
+showFirstLastButtons
+aria-label="Select Page Size"
+></mat-paginator>
+<table mat-table [dataSource]="categories" matSort>
+  <!--Define Columns-->
+  <!--use the ng-container a Template for defining a Column and a Cell-->
+  <ng-container matColumnDef="CategoryUniqueId">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="SOrt by Category Unique Id">Category Unique Id</th>
+    <!--*matCellDef="let category": A Single Record from 'categories'data Source-->
+    <td mat-cell *matCellDef="let category">{{category.CategoryUniqueId}}</td>
+  </ng-container>
+  <ng-container matColumnDef="CategoryId">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="SOrt by Category  Id">Category Id</th>
+    <!--*matCellDef="let category": A Single Record from 'categories'data Source-->
+    <td mat-cell *matCellDef="let category">{{category.CategoryId}}</td>
+  </ng-container>
+  <ng-container matColumnDef="CategoryName" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="SOrt by Category Name">Category Name</th>
+    <!--*matCellDef="let category": A Single Record from 'categories'data Source-->
+    <td mat-cell *matCellDef="let category">{{category.CategoryName}}</td>
+  </ng-container>
+  <ng-container matColumnDef="BasePrice">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="SOrt by Category Base Price">Base Price</th>
+    <!--*matCellDef="let category": A Single Record from 'categories'data Source-->
+    <td mat-cell *matCellDef="let category">{{category.BasePrice}}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="dataColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: dataColumns"></tr>
+</table>
+
+
+</div>
+
+<!-- <br/>
+<h6>A Dynamic Table</h6>
+<table mat-table [dataSource]="categories" class="mat-elevation-z8">
+  @for (col of dataColumns; track $index) {
+    <ng-container [matColumnDef]="col">
+      <th mat-header-cell *matHeaderCellDef> {{col.toUpperCase()}}</th>
+      <td mat-cell *matCellDef="let element"> {{element[col]}} </td>
+    </ng-container>
+  }
+
+  <tr mat-header-row *matHeaderRowDef="dataColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: dataColumns;"></tr>
+</table>
+<mat-paginator [pageSizeOptions]="pageSizeOptions"
+  showFirstLastButtons
+  aria-label="Select Page Size"
+></mat-paginator> -->

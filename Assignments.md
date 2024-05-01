@@ -93,3 +93,11 @@ Date: 1-April-2024
 
     - The Customer-MFE Applicaiton will dispatch an event on click of the Customer Table where ths event will carry customer data e.g. Name of the customer in event details object.
     - The Event information will be subscribed by the Shell and then when the Order-MEF is loaded, let it show orders placed by that customer  
+
+
+ # 01-May-2024
+ 1. Use the Table Component from Angular Material and do the Following
+    - Show CheckBoxes for Each Row in the Table
+    - Show Delete Button at the Bottom of Table
+    - WHen rows are checkd using the checkbox and Delete Button is clicked, those rows must be deleted
+    - Show a TextBox above the table, filter the data in Table based on the Data entred in the TextBox   

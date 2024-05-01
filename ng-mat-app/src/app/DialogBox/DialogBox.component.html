@@ -1,0 +1,22 @@
+<!--Create a Dialog Box-->
+<h4 mat-dialog-title>Enter Details:</h4>
+<div class="container">
+  <mat-dialog-content>
+  <div class="form-group">
+     <label for="Id">Id</label>
+     <input type="text" placeholder="Enter Id" class="form-control"
+       [(ngModel)]="data.Id"
+     >
+  </div>
+  <div class="form-group">
+    <label for="Name">Name</label>
+    <input type="text" placeholder="Enter Name" class="form-control"
+    [(ngModel)]="data.Name"
+    >
+ </div>
+</mat-dialog-content>
+<mat-dialog-actions align="start">
+  <button mat-button mat-dialog-close>Cancel</button>
+   <button mat-button [mat-dialog-close]="true">Close</button>
+</mat-dialog-actions>
+</div>

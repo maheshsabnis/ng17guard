@@ -1064,3 +1064,19 @@ export const routes: Routes = [
     window.addEventListener('filter_data', CALLBACK-FUNCTION)
 
 ````
+
+
+# Angular Material
+1. Hight Quality ready-to-use UI Elements
+    - New Components
+    - Attribute directives those extends and enhances UI and Behavior of HTML Elements
+    - Simple and easy to use and extendable components with seamless integrattion with Angular Apps
+        - Same Databinding
+        - Events
+        - Simple but yes rich rendering of UI in browser
+        - Cross-Browser support
+    - Create Angular App using @angular/cli
+    - Install @angular/material
+        - ng add @angular/material
+            - Install the Component Dev Kit (CDK) and Angular Animations
+            - Prebuild Material Theme   
