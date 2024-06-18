@@ -17,7 +17,7 @@ alert('In Auth Guard Services');
   if(sessionStorage.getItem('isLogged') === 'yes'){
     alert('Logged In');
     // Take to the Default route from the RouteTable
-    return true
+    return true; // Done
   }
 
   // Redirect the Login Page
